@@ -1,9 +1,7 @@
 {
     "name": "Subvrsive",
     "rootNamespace": "Subvrsive",
-    "references": [
-        "GUID:4139b218cc49549ba9efbf1bde6338da"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
