@@ -1,0 +1,16 @@
+{
+    "name": "Subvrsive",
+    "rootNamespace": "Subvrsive",
+    "references": [
+        "GUID:4139b218cc49549ba9efbf1bde6338da"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
