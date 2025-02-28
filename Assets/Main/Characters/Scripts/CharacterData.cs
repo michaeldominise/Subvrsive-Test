@@ -9,9 +9,13 @@ namespace Subvrsive
     {
         public class Attribute
         {
-            public float health = 1f;
-            public float speed = 1f;
-            public float damage = 1f;
+            public float health = 100f;
+            public float movementSpeed = 1f;
+            public float rotateSpeed = 1f;
+            public float damage = 10f;
+
+            [Vector2Slider(0, 1)]
+            public float aggressiveValue = 0.5f;
         }
 
         public class InGameObjects
