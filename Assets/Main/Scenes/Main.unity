@@ -3374,7 +3374,11 @@ MonoBehaviour:
   spawnCount: 10
   spawnParent: {fileID: 1593693232}
   characterList:
-  - {fileID: 11400000, guid: 248a7ed6b4c194058b75dd26d0108743, type: 2}
+  - {fileID: 11400000, guid: 475b717d6572c4d9a9f46a81db4290b9, type: 2}
+  - {fileID: 11400000, guid: 5c2614d2e91d34348a035cc90e145b84, type: 2}
+  - {fileID: 11400000, guid: eb360a7cd76ac4fcbb8923188c626116, type: 2}
+  - {fileID: 11400000, guid: 9975b8ed4763a4889b73b60939f32b7a, type: 2}
+  - {fileID: 11400000, guid: ddba6537977d04dd886a39b034b3078d, type: 2}
 --- !u!1001 &1264407512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5733,10 +5737,6 @@ PrefabInstance:
     - target: {fileID: 4870618737491018200, guid: 05fc4261570a64baa950ffeb249eda4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379026534269587395, guid: 05fc4261570a64baa950ffeb249eda4c, type: 3}
-      propertyPath: m_Speed
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7798641259512295895, guid: 05fc4261570a64baa950ffeb249eda4c, type: 3}
       propertyPath: m_Name

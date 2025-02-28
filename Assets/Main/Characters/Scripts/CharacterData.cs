@@ -11,8 +11,12 @@ namespace Subvrsive
         {
             public float health = 100f;
             public float movementSpeed = 1f;
+            public float randomPathRange = 5.0f;
             public float rotateSpeed = 1f;
             public float damage = 10f;
+            public float attackDelay = 0.5f;
+            public Vector2 attackCooldown = new Vector2(0.5f, 3);
+            public float attackRange = 2f;
 
             [Range(0, 1)]
             public float aggressiveValue = 0.5f;
@@ -23,7 +27,7 @@ namespace Subvrsive
         {
             public Sprite bulletSprite;
             public GameObject bulletPrefab;
-            public PlayerBehaviour playerPrefab;
+            public PlayerMainBehaviour playerPrefab;
         }
 
         public Attribute attribute;
