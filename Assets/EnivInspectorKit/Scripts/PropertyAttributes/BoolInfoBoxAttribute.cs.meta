@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7dd3a41a17934234d986c99da2fe95e9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283228
+  packageName: Eniv Inspector Kit
+  packageVersion: 1.0
+  assetPath: Assets/EnivInspectorKit/Scripts/PropertyAttributes/BoolInfoBoxAttribute.cs
+  uploadId: 661693

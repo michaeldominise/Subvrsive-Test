@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3b613d804725af14795c8e1bd3b3ae8e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283228
+  packageName: Eniv Inspector Kit
+  packageVersion: 1.0
+  assetPath: Assets/EnivInspectorKit/Scripts/Examples/ToggleLeft.cs
+  uploadId: 661693

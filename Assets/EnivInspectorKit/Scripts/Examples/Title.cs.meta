@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 90057d3bbe54a004ea533fdd03fb5ec1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283228
+  packageName: Eniv Inspector Kit
+  packageVersion: 1.0
+  assetPath: Assets/EnivInspectorKit/Scripts/Examples/Title.cs
+  uploadId: 661693

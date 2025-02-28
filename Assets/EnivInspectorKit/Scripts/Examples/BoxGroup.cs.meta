@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 34e355d5a66cd42478d65dad23257f77
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283228
+  packageName: Eniv Inspector Kit
+  packageVersion: 1.0
+  assetPath: Assets/EnivInspectorKit/Scripts/Examples/BoxGroup.cs
+  uploadId: 661693

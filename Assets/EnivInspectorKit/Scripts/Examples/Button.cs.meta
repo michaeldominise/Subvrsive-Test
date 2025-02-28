@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7115967a1e5e5f14cac531f66e5fd64e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283228
+  packageName: Eniv Inspector Kit
+  packageVersion: 1.0
+  assetPath: Assets/EnivInspectorKit/Scripts/Examples/Button.cs
+  uploadId: 661693

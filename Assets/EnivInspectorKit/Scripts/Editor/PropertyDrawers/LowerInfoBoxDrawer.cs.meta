@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 982ec01ac1bdcbc4ea19d995be40653b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283228
+  packageName: Eniv Inspector Kit
+  packageVersion: 1.0
+  assetPath: Assets/EnivInspectorKit/Scripts/Editor/PropertyDrawers/LowerInfoBoxDrawer.cs
+  uploadId: 661693
