@@ -13,7 +13,7 @@ namespace Subvrsive
         [SerializeField] ParticleSystem particle;
         [SerializeField] LayerMask playerLayer;
 
-        public BulletData BulletData => source.CharacterData.inGameObjects.bulletData;
+        public BulletData BulletData => source.CharacterData.inGameObjects.weaponData.inGameObjects.bulletData;
 
         BulletData.Attribute Attribute => BulletData.attribute;
         Transform SpawnPoint => source.PlayerAttackController.SpawnPoint;
@@ -56,7 +56,6 @@ namespace Subvrsive
                 return;
 
             target.PlayerHealthController.DoDamage(BulletData.attribute.damage);
-            print($"{source.name} hit {target.name}: {BulletData.attribute.damage}");
         }
 
         public IEnumerator AutoKill()

@@ -17,10 +17,8 @@ MonoBehaviour:
     movementSpeed: 0.9
     randomPathRange: 5
     rotateSpeed: 180
-    attackDelay: 0.15
     attackCooldown: {x: 0.25, y: 1}
-    attackRange: 2
     aggressiveValue: 0.5
   inGameObjects:
-    bulletData: {fileID: 11400000, guid: db34daab4278744e4a23e3d0c5cba940, type: 2}
+    weaponData: {fileID: 11400000, guid: 06f29e728db0e4a208e00d5cb21c162e, type: 2}
     playerPrefab: {fileID: 2307639959443866957, guid: 05fc4261570a64baa950ffeb249eda4c, type: 3}

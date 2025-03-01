@@ -74,7 +74,7 @@ namespace Subvrsive
         {
             if (Target == null)
             {
-                var colliders = Physics.OverlapSphere(transform.position, CharacterData.attribute.attackRange, 1 << gameObject.layer);
+                var colliders = Physics.OverlapSphere(transform.position, CharacterData.inGameObjects.weaponData.attribute.attackRange, 1 << gameObject.layer);
                 foreach (var collider in colliders)
                     if (transform != collider.transform)
                     {
@@ -89,7 +89,7 @@ namespace Subvrsive
             }
             else if (currentState == State.None)
             {
-                if (Target.CurrentState == PlayerMainController.State.Dead || Vector3.Distance(transform.position, Target.transform.position) > CharacterData.attribute.attackRange + NavMeshAgent.radius)
+                if (Target.CurrentState == PlayerMainController.State.Dead || Vector3.Distance(transform.position, Target.transform.position) > CharacterData.inGameObjects.weaponData.attribute.attackRange + NavMeshAgent.radius)
                     Target = null;
                 else
                     StartAttack();
@@ -108,7 +108,7 @@ namespace Subvrsive
 
             yield return null;
             yield return new WaitUntil(() => playerMainController.PlayerRotationController.CurrentState == PlayerRotationController.State.None);
-            yield return new WaitForSeconds(CharacterData.attribute.attackDelay);
+            yield return new WaitForSeconds(CharacterData.inGameObjects.weaponData.attribute.attackDelay);
 
             BulletSpawner.Instance.Spawn(playerMainController);
 

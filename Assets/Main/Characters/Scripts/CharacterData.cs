@@ -13,9 +13,7 @@ namespace Subvrsive
             public float movementSpeed = 1f;
             public float randomPathRange = 5.0f;
             public float rotateSpeed = 1f;
-            public float attackDelay = 0.15f;
             public Vector2 attackCooldown = new Vector2(0.5f, 3);
-            public float attackRange = 2f;
 
             [Range(0, 1)]
             public float aggressiveValue = 0.5f;
@@ -24,7 +22,7 @@ namespace Subvrsive
         [System.Serializable]
         public class InGameObjects
         {
-            public BulletData bulletData;
+            public WeaponData weaponData;
             public PlayerMainController playerPrefab;
         }
 

@@ -14,7 +14,8 @@ namespace Subvrsive
         private void Awake() => Instance = this;
 
         public void Spawn(PlayerMainController playerMainController)
-            => Spawn(playerMainController.CharacterData.inGameObjects.bulletData.inGameObjects.bulletPrefab, x => x.BulletData == playerMainController.CharacterData.inGameObjects.bulletData,
+            => Spawn(playerMainController.CharacterData.inGameObjects.weaponData.inGameObjects.bulletData.inGameObjects.bulletPrefab,
+                x => x.BulletData == playerMainController.CharacterData.inGameObjects.weaponData.inGameObjects.bulletData,
                 init: item => item.Init(playerMainController));
     }
 }
