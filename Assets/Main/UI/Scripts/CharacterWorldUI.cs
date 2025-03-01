@@ -25,21 +25,32 @@ namespace Subvrsive
             this.worldCamera = worldCamera;
 
             if (this.playerMainController)
+            {
                 this.playerMainController.PlayerHealthController.OnHealthUpdate -= PlayerHealthController_OnHealthUpdate;
+                this.playerMainController.OnStateUpdate -= PlayerMainController_OnStateUpdate;
+            }
 
             this.playerMainController = playerMainController;
             this.playerMainController.PlayerHealthController.OnHealthUpdate += PlayerHealthController_OnHealthUpdate;
+            this.playerMainController.OnStateUpdate += PlayerMainController_OnStateUpdate;
 
             playerName.text = playerMainController.gameObject.name;
             healthSlider.value = 0;
+            updateHealthCoroutine = null;
             UpdateHealth();
+        }
+
+        private void PlayerMainController_OnStateUpdate(PlayerMainController.State state)
+        {
+            if (state == PlayerMainController.State.Dead)
+                gameObject.SetActive(false);
         }
 
         private void PlayerHealthController_OnHealthUpdate(int value) => UpdateHealth();
 
         void UpdateHealth()
         {
-            if (updateHealthCoroutine != null)
+            if (updateHealthCoroutine != null || !gameObject.activeInHierarchy)
                 return;
             updateHealthCoroutine = StartCoroutine(_UpdateHealth());
         }
@@ -57,8 +68,6 @@ namespace Subvrsive
             }
             healthSlider.value = playerMainController.PlayerHealthController.HealthProgress;
             healthSlider.image.CrossFadeColor(healthColor.Evaluate(healthSlider.value), 0, true, false);
-            if (healthSlider.value == 0)
-                gameObject.SetActive(false);
             updateHealthCoroutine = null;
         }
 

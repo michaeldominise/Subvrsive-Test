@@ -85,6 +85,7 @@ namespace Subvrsive
             if (!isRegisterListenerDone)
                 RegisterListener();
 
+            currentState = State.None;
             gameObject.SetActive(true);
             gameObject.name = $"{characterData.name}:({index})";
             this.characterData = characterData;
@@ -99,6 +100,7 @@ namespace Subvrsive
         IEnumerator _Kill()
         {
             CurrentState = State.Dead;
+            target = null;
             yield return new WaitForSeconds(2);
             gameObject.SetActive(false);
         }

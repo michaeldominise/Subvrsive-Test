@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Slime 3
   m_EditorClassIdentifier: 
   attribute:
-    maxHealth: 100
+    maxHealth: 250
     movementSpeed: 0.7
     randomPathRange: 5
     rotateSpeed: 180
-    attackDelay: 0.15
-    attackCooldown: {x: 0.25, y: 1}
-    attackRange: 2
+    attackDelay: 0.5
+    attackCooldown: {x: 0.5, y: 1}
+    attackRange: 3
     aggressiveValue: 0.5
   inGameObjects:
-    bulletData: {fileID: 11400000, guid: 53ba00e7e18754a0cac79ed18b80b40e, type: 2}
-    playerPrefab: {fileID: 2307639959443866957, guid: 05fc4261570a64baa950ffeb249eda4c, type: 3}
+    bulletData: {fileID: 11400000, guid: 818c93850944b41968dcd184e7a0a5f8, type: 2}
+    playerPrefab: {fileID: 2307639959443866957, guid: 88e80f1bb08694523aa8a9bb1270a827, type: 3}

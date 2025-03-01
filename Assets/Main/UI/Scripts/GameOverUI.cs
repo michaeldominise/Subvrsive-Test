@@ -21,14 +21,15 @@ namespace Subvrsive
             Show(true);
 
             var winner = PlayerSpawner.Instance.Spawnedlist.FirstOrDefault(x => x.CurrentState != PlayerMainController.State.Dead);
-            if(winner)
-                winner.CurrentState = PlayerMainController.State.Dead;
-
             winnerText.text = winner ? $"{winner.gameObject.name} won the game!" : "All players have been killed";
         }
 
         public void ShowMainMenu()
         {
+            var winner = PlayerSpawner.Instance.Spawnedlist.FirstOrDefault(x => x.CurrentState != PlayerMainController.State.Dead);
+            if (winner)
+                winner.Kill();
+
             MainMenuUI.Instance.Show(true);
             Show(false);
         }

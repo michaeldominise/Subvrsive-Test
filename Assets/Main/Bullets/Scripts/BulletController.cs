@@ -9,6 +9,8 @@ namespace Subvrsive
         [SerializeField] PlayerMainController source;
         [SerializeField] Rigidbody _rigidbody;
         [SerializeField] TrailRenderer trail;
+        [SerializeField] ParticleSystemRenderer particleRenderer;
+        [SerializeField] ParticleSystem particle;
         [SerializeField] LayerMask playerLayer;
 
         public BulletData BulletData => source.CharacterData.inGameObjects.bulletData;
@@ -25,6 +27,9 @@ namespace Subvrsive
             transform.SetPositionAndRotation(SpawnPoint.position, SpawnPoint.rotation);
             _rigidbody.AddForce(bulletForwardForce, ForceMode.Impulse);
             trail.Clear();
+            particleRenderer.material = BulletData.inGameObjects.bulletMaterial;
+            particle.Clear();
+            particle.Play();
 
             StartCoroutine(AutoKill());
         }

@@ -22,5 +22,5 @@ MonoBehaviour:
     attackRange: 2
     aggressiveValue: 0.5
   inGameObjects:
-    bulletData: {fileID: 11400000, guid: 53ba00e7e18754a0cac79ed18b80b40e, type: 2}
+    bulletData: {fileID: 11400000, guid: db34daab4278744e4a23e3d0c5cba940, type: 2}
     playerPrefab: {fileID: 2307639959443866957, guid: 05fc4261570a64baa950ffeb249eda4c, type: 3}

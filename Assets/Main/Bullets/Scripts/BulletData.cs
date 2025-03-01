@@ -19,7 +19,7 @@ namespace Subvrsive
         [Serializable]
         public class InGameObjects
         {
-            public Sprite bulletSprite;
+            public Material bulletMaterial;
             public BulletController bulletPrefab;
         }
 

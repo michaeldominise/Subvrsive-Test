@@ -34,6 +34,7 @@ namespace Subvrsive
 
         public void Init(PlayerMainController playerMainController)
         {
+            currentState = State.Alive;
             this.playerMainController = playerMainController;
 
             currentHealth = MaxHealth;
