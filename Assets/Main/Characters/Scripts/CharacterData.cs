@@ -25,7 +25,7 @@ namespace Subvrsive
         public class InGameObjects
         {
             public BulletData bulletData;
-            public PlayerMainBehaviour playerPrefab;
+            public PlayerMainController playerPrefab;
         }
 
         public Attribute attribute;
