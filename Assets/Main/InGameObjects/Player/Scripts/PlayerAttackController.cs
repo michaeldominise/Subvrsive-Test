@@ -10,9 +10,7 @@ namespace Subvrsive
     {
         public enum State { None, Attacking, AttackDone, Cooldown }
 
-        [SerializeField] CharacterData characterData;
-        [SerializeField] PlayerMainBehaviour playerMainBehaviour;
-
+        [SerializeField] Transform spawnPoint;
         [SerializeField] State currentState;
         public State CurrentState
         {
@@ -21,20 +19,25 @@ namespace Subvrsive
             {
                 if (currentState == value)
                     return;
+                currentState = value;
                 OnStateUpdate?.Invoke(currentState);
             }
         }
 
         public event Action<State> OnStateUpdate;
 
+        public Transform SpawnPoint => spawnPoint;
+
+        PlayerMainBehaviour playerMainBehaviour;
         Coroutine atttackCoroutine;
+        CharacterData CharacterData => playerMainBehaviour.CharacterData;
         NavMeshAgent NavMeshAgent => playerMainBehaviour.NavMeshAgent;
         Transform Target { get => playerMainBehaviour.target; set => playerMainBehaviour.target = value; }
 
 
-        public void Init(CharacterData characterData)
+        public void Init(PlayerMainBehaviour playerMainBehaviour)
         {
-            this.characterData = characterData;
+            this.playerMainBehaviour = playerMainBehaviour;
             StartCoroutine(CheckEnemies());
         }
 
@@ -53,17 +56,18 @@ namespace Subvrsive
         {
             if (Target == null)
             {
-                var colliders = Physics.OverlapSphere(transform.position, characterData.attribute.attackRange, ~gameObject.layer);
+                var colliders = Physics.OverlapSphere(transform.position, CharacterData.attribute.attackRange, 1 << gameObject.layer);
                 foreach (var collider in colliders)
                     if (transform != collider.transform)
                     {
                         StartAttack();
                         Target = collider.transform;
+                        break;
                     }
             }
             else if (currentState != State.Attacking)
             {
-                if (Vector3.Distance(transform.position, Target.position) > characterData.attribute.attackRange + NavMeshAgent.radius)
+                if (Vector3.Distance(transform.position, Target.position) > CharacterData.attribute.attackRange + NavMeshAgent.radius)
                     Target = null;
             }
         }
@@ -78,21 +82,18 @@ namespace Subvrsive
         {
             CurrentState = State.Attacking;
 
-            yield return new WaitForSeconds(characterData.attribute.attackDelay);
-            SpawnBullet();
+            yield return new WaitForSeconds(CharacterData.attribute.attackDelay);
+            BulletSpawner.Instance.Spawn(playerMainBehaviour);
 
+            CurrentState = State.AttackDone;
             atttackCoroutine = null;
         }
 
         IEnumerator StartCooldown()
         {
             CurrentState = State.Cooldown;
-            yield return new WaitForSeconds(Random.Range(characterData.attribute.attackCooldown.x, characterData.attribute.attackCooldown.y));
-        }
-
-        void SpawnBullet()
-        {
-
+            yield return new WaitForSeconds(Random.Range(CharacterData.attribute.attackCooldown.x, CharacterData.attribute.attackCooldown.y));
+            CurrentState = State.None;
         }
     }
 }

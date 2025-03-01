@@ -10,9 +10,6 @@ namespace Subvrsive
     {
         public enum State { Idle, Moving }
 
-        [SerializeField] CharacterData characterData;
-        [SerializeField] PlayerMainBehaviour playerMainBehaviour;
-
         [SerializeField] State currentState;
         public State CurrentState
         {
@@ -21,20 +18,23 @@ namespace Subvrsive
             {
                 if (currentState == value)
                     return;
+                currentState = value;
                 OnStateUpdate?.Invoke(currentState);
             }
         }
 
         public event Action<State> OnStateUpdate;
 
+        PlayerMainBehaviour playerMainBehaviour;
+        CharacterData CharacterData => playerMainBehaviour.CharacterData;
         NavMeshAgent NavMeshAgent => playerMainBehaviour.NavMeshAgent;
 
         Coroutine moveCoroutine;
 
-        public void Init(CharacterData characterData, int index)
+        public void Init(PlayerMainBehaviour playerMainBehaviour, int index)
         {
-            this.characterData = characterData;
-            NavMeshAgent.avoidancePriority = index;
+                this.playerMainBehaviour = playerMainBehaviour;
+                NavMeshAgent.avoidancePriority = index;
             NavMeshAgent.updateRotation = false;
             StartMoving();
         }
@@ -87,7 +87,7 @@ namespace Subvrsive
 
         void RefreshDestination()
         {
-            if (NavMeshAgent.remainingDistance > 0 || !GetRandomPoint(transform.position, characterData.attribute.randomPathRange, out Vector3 point))
+            if (NavMeshAgent.remainingDistance > 0 || !GetRandomPoint(transform.position, CharacterData.attribute.randomPathRange, out Vector3 point))
                 return;
             NavMeshAgent.destination = point;
         }

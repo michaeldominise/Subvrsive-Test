@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Subvrsive
 {
-    [CreateAssetMenu(fileName = "Data", menuName = "GameData/CharacterData")]
+    [CreateAssetMenu(fileName = "CharacterData", menuName = "GameData/CharacterData")]
     public class CharacterData : ScriptableObject
     {
         [System.Serializable]
@@ -25,8 +25,7 @@ namespace Subvrsive
         [System.Serializable]
         public class InGameObjects
         {
-            public Sprite bulletSprite;
-            public GameObject bulletPrefab;
+            public BulletData bulletData;
             public PlayerMainBehaviour playerPrefab;
         }
 

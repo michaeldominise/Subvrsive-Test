@@ -8,14 +8,13 @@ namespace Subvrsive
 {
     public class PlayerRotationController : MonoBehaviour
     {
-        [SerializeField] CharacterData characterData;
-        [SerializeField] Transform model;
-        [SerializeField] PlayerMainBehaviour playerMainBehaviour;
-
+        PlayerMainBehaviour playerMainBehaviour;
+        CharacterData CharacterData => playerMainBehaviour.CharacterData;
         Transform Target => playerMainBehaviour.target;
         NavMeshAgent NavMeshAgent => playerMainBehaviour.NavMeshAgent;
+        Transform Model => playerMainBehaviour.Model;
 
-        public void Init(CharacterData characterData) => this.characterData = characterData;
+        public void Init(PlayerMainBehaviour playerMainBehaviour) => this.playerMainBehaviour = playerMainBehaviour;
 
         private void Update()
         {
@@ -24,9 +23,9 @@ namespace Subvrsive
 
         void RefreshDirection()
         {
-            Vector3 relativePos = (Target ? Target.position : NavMeshAgent.destination) - model.position;
+            Vector3 relativePos = (Target ? Target.position : NavMeshAgent.destination) - Model.position;
             Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-            model.rotation = Quaternion.Lerp(model.rotation, rotation, Time.deltaTime * characterData.attribute.rotateSpeed);
+            Model.rotation = Quaternion.RotateTowards(Model.rotation, rotation, Time.deltaTime * CharacterData.attribute.rotateSpeed);
         }
     }
 }

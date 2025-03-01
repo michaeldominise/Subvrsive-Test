@@ -18,10 +18,10 @@ namespace Subvrsive
         public void Start()
         {
             for (var x = 0; x < spawnCount; x++)
-                SpawnPlayer(characterList[Random.Range(0, characterList.Count)], x);
+                Spawn(characterList[Random.Range(0, characterList.Count)], x);
         }
 
-        public PlayerMainBehaviour SpawnPlayer(CharacterData characterData, int index)
+        public PlayerMainBehaviour Spawn(CharacterData characterData, int index)
         {
             RandomPoint(transform.position, spawnRange, out Vector3 spanwPoint);
             var playerBehaviour = Instantiate(characterData.inGameObjects.playerPrefab, spanwPoint, Quaternion.identity, spawnParent);
