@@ -39,23 +39,21 @@ namespace Subvrsive
             StartMoving();
         }
 
-        private void Start() => playerMainBehaviour.OnStateUpdate += PlayerAttackController_OnStateUpdate;
-
-        private void PlayerAttackController_OnStateUpdate(PlayerMainBehaviour.State state)
-        {
-            switch (state)
+        private void Start() => playerMainBehaviour.OnStateUpdate += state =>
             {
-                case PlayerMainBehaviour.State.Moving:
-                    break;
-                case PlayerMainBehaviour.State.Attacking:
-                case PlayerMainBehaviour.State.Damaged:
-                    StopMoving();
-                    break;
-                default:
-                    StartMoving();
-                    break;
-            }
-        }
+                switch (state)
+                {
+                    case PlayerMainBehaviour.State.Moving:
+                        break;
+                    case PlayerMainBehaviour.State.Attacking:
+                    case PlayerMainBehaviour.State.Dead:
+                        StopMoving();
+                        break;
+                    default:
+                        StartMoving();
+                        break;
+                }
+            };
 
         public void StartMoving()
         {

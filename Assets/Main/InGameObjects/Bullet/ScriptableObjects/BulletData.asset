@@ -15,7 +15,8 @@ MonoBehaviour:
   attribute:
     force: {x: 10, y: 1}
     lifeSpan: 1
-    explosionRadius: 1
+    explosionRadius: 0.25
+    damage: 10
   inGameObjects:
     bulletSprite: {fileID: 0}
     bulletPrefab: {fileID: 452372735678871950, guid: e6090034ce57b48fd96b9a33497132e3, type: 3}

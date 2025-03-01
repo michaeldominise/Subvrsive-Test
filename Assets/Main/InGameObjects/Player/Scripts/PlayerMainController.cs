@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,7 +7,7 @@ namespace Subvrsive
 {
     public class PlayerMainBehaviour : MonoBehaviour
     {
-        public enum State { None, Moving, Attacking, Damaged, Dead }
+        public enum State { None, Moving, Attacking, Dead }
 
         [SerializeField] CharacterData characterData;
         [SerializeField] NavMeshAgent navMeshAgent;
@@ -14,8 +15,10 @@ namespace Subvrsive
         [SerializeField] PlayerMovementController playerMovementController;
         [SerializeField] PlayerAttackController playerAttackController;
         [SerializeField] PlayerRotationController playerRotationController;
+        [SerializeField] PlayerHealthController playerHealthController;
+        [SerializeField] PlayerAnimationController playerAnimationController;
 
-        public Transform target;
+        public PlayerMainBehaviour target;
         public bool isRegisterListenerDone;
 
         [SerializeField] State currentState;
@@ -37,6 +40,8 @@ namespace Subvrsive
         public NavMeshAgent NavMeshAgent => navMeshAgent;
         public Transform Model => model;
         public PlayerAttackController PlayerAttackController => playerAttackController;
+        public PlayerRotationController PlayerRotationController => playerRotationController;
+        public PlayerHealthController PlayerHealthController => playerHealthController;
 
         private void RegisterListener()
         {
@@ -49,6 +54,16 @@ namespace Subvrsive
                     PlayerAttackController.State.AttackDone => State.None,
                     _ => currentState,
                 };
+            playerHealthController.OnStateUpdate += state =>
+            {
+                switch (state)
+                {
+                    case PlayerHealthController.State.Dead:
+                        CurrentState = State.Dead;
+                        StartCoroutine(Kill());
+                        break;
+                }
+            };
         }
 
         public void Init(CharacterData characterData, int index)
@@ -56,14 +71,20 @@ namespace Subvrsive
             if (!isRegisterListenerDone)
                 RegisterListener();
 
+            gameObject.SetActive(true);
+            gameObject.name = $"{characterData.name}:({index})";
             this.characterData = characterData;
             playerMovementController.Init(this, index);
             playerAttackController.Init(this);
             playerRotationController.Init(this);
+            playerHealthController.Init(this);
+            playerAnimationController.Init(this);
         }
 
-        public void DoDamage(float damage)
+        IEnumerator Kill()
         {
+            yield return new WaitForSeconds(2);
+            gameObject.SetActive(false);
         }
     }
 }

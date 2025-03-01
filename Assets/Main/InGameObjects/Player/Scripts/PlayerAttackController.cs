@@ -32,7 +32,7 @@ namespace Subvrsive
         Coroutine atttackCoroutine;
         CharacterData CharacterData => playerMainBehaviour.CharacterData;
         NavMeshAgent NavMeshAgent => playerMainBehaviour.NavMeshAgent;
-        Transform Target { get => playerMainBehaviour.target; set => playerMainBehaviour.target = value; }
+        PlayerMainBehaviour Target { get => playerMainBehaviour.target; set => playerMainBehaviour.target = value; }
 
 
         public void Init(PlayerMainBehaviour playerMainBehaviour)
@@ -41,8 +41,22 @@ namespace Subvrsive
             StartCoroutine(CheckEnemies());
         }
 
+        private void Start() => playerMainBehaviour.OnStateUpdate += state =>
+            {
+                switch (state)
+                {
+                    case PlayerMainBehaviour.State.Dead:
+                        StopAllCoroutines();
+                        currentState = State.None;
+                        break;
+                    default:
+                        break;
+                }
+            };
+
         IEnumerator CheckEnemies()
         {
+            yield return new WaitForSeconds(Random.value * 3);
             while(true)
             {
                 if (currentState == State.AttackDone)
@@ -60,15 +74,21 @@ namespace Subvrsive
                 foreach (var collider in colliders)
                     if (transform != collider.transform)
                     {
+                        var hit = collider.GetComponent<PlayerMainBehaviour>();
+                        if (hit.CurrentState == PlayerMainBehaviour.State.Dead)
+                            continue;
+
+                        Target = hit;
                         StartAttack();
-                        Target = collider.transform;
                         break;
                     }
             }
-            else if (currentState != State.Attacking)
+            else if (currentState == State.None)
             {
-                if (Vector3.Distance(transform.position, Target.position) > CharacterData.attribute.attackRange + NavMeshAgent.radius)
+                if (Target.CurrentState == PlayerMainBehaviour.State.Dead || Vector3.Distance(transform.position, Target.transform.position) > CharacterData.attribute.attackRange + NavMeshAgent.radius)
                     Target = null;
+                else
+                    StartAttack();
             }
         }
 
@@ -82,7 +102,10 @@ namespace Subvrsive
         {
             CurrentState = State.Attacking;
 
+            yield return null;
+            yield return new WaitUntil(() => playerMainBehaviour.PlayerRotationController.CurrentState == PlayerRotationController.State.None);
             yield return new WaitForSeconds(CharacterData.attribute.attackDelay);
+
             BulletSpawner.Instance.Spawn(playerMainBehaviour);
 
             CurrentState = State.AttackDone;

@@ -6,8 +6,9 @@ namespace Subvrsive
 {
     public class BulletController : MonoBehaviour
     {
-        [SerializeField] Rigidbody _rigidbody;
         [SerializeField] PlayerMainBehaviour source;
+        [SerializeField] Rigidbody _rigidbody;
+        [SerializeField] TrailRenderer trail;
         [SerializeField] LayerMask playerLayer;
 
         public BulletData BulletData => source.CharacterData.inGameObjects.bulletData;
@@ -23,6 +24,8 @@ namespace Subvrsive
             gameObject.SetActive(true);
             transform.SetPositionAndRotation(SpawnPoint.position, SpawnPoint.rotation);
             _rigidbody.AddForce(bulletForwardForce, ForceMode.Impulse);
+            trail.Clear();
+
             StartCoroutine(AutoKill());
         }
 
@@ -37,9 +40,18 @@ namespace Subvrsive
             var hitList = Physics.OverlapSphere(transform.position, Attribute.explosionRadius, playerLayer);
             foreach (var hit in hitList)
                 if (1 << hit.gameObject.layer == playerLayer)
-                    hit.GetComponent<PlayerMainBehaviour>().DoDamage(source.CharacterData.attribute.damage);
+                    DoDamage(hit.GetComponent<PlayerMainBehaviour>());
 
             Die();
+        }
+
+        void DoDamage(PlayerMainBehaviour target)
+        {
+            if (!target)
+                return;
+
+            target.PlayerHealthController.DoDamage(BulletData.attribute.damage);
+            print($"{source.name} hit {target.name}: {BulletData.attribute.damage}");
         }
 
         public IEnumerator AutoKill()

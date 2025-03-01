@@ -9,12 +9,11 @@ namespace Subvrsive
         [System.Serializable]
         public class Attribute
         {
-            public float health = 100f;
+            public int maxHealth = 100;
             public float movementSpeed = 1f;
             public float randomPathRange = 5.0f;
             public float rotateSpeed = 1f;
-            public float damage = 10f;
-            public float attackDelay = 0.5f;
+            public float attackDelay = 0.15f;
             public Vector2 attackCooldown = new Vector2(0.5f, 3);
             public float attackRange = 2f;
 

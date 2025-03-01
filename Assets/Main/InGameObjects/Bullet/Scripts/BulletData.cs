@@ -12,7 +12,8 @@ namespace Subvrsive
         {
             public Vector2 force = Vector2.one;
             public float lifeSpan = 1f;
-            public float explosionRadius = 1f;
+            public float explosionRadius = 0.25f;
+            public int damage = 10;
         }
 
         [Serializable]

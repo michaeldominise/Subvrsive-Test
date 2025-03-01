@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Slime 3
   m_EditorClassIdentifier: 
   attribute:
-    health: 100
+    maxHealth: 100
     movementSpeed: 0.7
     randomPathRange: 5
     rotateSpeed: 180
-    damage: 10
-    attackDelay: 2
+    attackDelay: 0.15
     attackCooldown: {x: 0.25, y: 1}
     attackRange: 2
     aggressiveValue: 0.5
